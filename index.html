@@ -34,7 +34,22 @@
 
       <div>
         <label for="LasttName">Last Name</label><br>
-        <input type="text" name="Last_Name" id="LastName" placeholder="Last Name" required>
+        <input type="text" name="Last_Name" id="LastName" placeholder="Last Name" required autofocus>
+      </div>
+
+      <div>
+        <label for="Email">Email</label><br>
+        <input type="email" name="Email" id="Email" placeholder="Email" required autofocus>
+      </div>
+
+      <div>
+        <label for="Address">Address</label><br>
+        <input type="address" name="Address" id="Address" placeholder="Address" required autofocus>
+      </div>
+
+      <div>
+        <label for="City">City</label><br>
+        <input type="city" name="City" id="City" placeholder="City" required autofocus>
       </div>
 
       <div>
@@ -105,6 +120,15 @@
 
       urlParams.forEach(function(value,key){
 
+        switch(key){
+          case "First_Name":
+          case "Last_Name":
+          case "Address":
+          case "City"  
+          value = titleCase(value);
+          break;
+        }
+
         key = key.split("_").join(" ");
         myOutput += `<p>${key}: ${value}</p>`;
       });
@@ -112,6 +136,16 @@
       myOutput += `</div>`;
       document.querySelector("#output").innerHTML = myOutput;
     }
+    function titleCase(str){
+    str = str.split(" ");
+
+    for(let x=0;x<str.length;x++){
+       str[x] = str[x].charAt(0).toUpperCase() + str[x].slice(1).toLowerCase();
+    }
+
+    str = str.join(" ");
+    return str;
+}
   </script>  
  </body>
 </html>
